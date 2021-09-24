@@ -31,6 +31,13 @@ public class ProductPriceDetection {
         num = num.replace(",", ".");
         num = num.replace(" ", "");
         num = num.replaceAll("[^1234567890.]", "");
+
+        while(num.startsWith(".")){
+            num = num.substring(1);
+        }
+        while(num.endsWith(".")){
+            num = num.substring(0, num.length()-1);
+        }
         var result = 0.0;
         try{
             result = Double.parseDouble(num);
@@ -55,9 +62,7 @@ public class ProductPriceDetection {
                     j--;
                     continue;
                 }
-                System.out.println(prices[j]);
-
-                items.add(new ReceiptItem(price_string_to_double(prices[j]), current_product.replaceAll("\\d", ""), LocalDateTime.now()));
+                items.add(new ReceiptItem(current_product.replaceAll("\\d", ""), price_string_to_double(prices[j])));
             }
         } catch(IndexOutOfBoundsException e){
             return items;

@@ -11,10 +11,9 @@ public class ReceiptItem {
     private StringProperty price_prop;
     private StringProperty date_prop;
 
-    public ReceiptItem(double price, String name, LocalDateTime date){
+    public ReceiptItem(String name, double price){
         this.price = price;
         this.name = name;
-        this.date = date;
 
     }
 
@@ -27,12 +26,7 @@ public class ReceiptItem {
        if(price_prop == null) price_prop = new SimpleStringProperty(Double.toString(price));
        return price_prop;
     }
-    public StringProperty date_property(){
-       if(date_prop == null) name_prop = new SimpleStringProperty(date.toString());
-       return date_prop;
-    }
 
     public double price;
     public String name;
-    public LocalDateTime date;
 }
