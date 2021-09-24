@@ -12,7 +12,7 @@ import java.io.ByteArrayInputStream;
 public class MatConversion {
     public static Image mat_to_javafx_image(Mat in){
         var bytes = new MatOfByte();
-        Imgcodecs.imencode(".tiff", in, bytes);
+        Imgcodecs.imencode(".png", in, bytes);
         return new Image(new ByteArrayInputStream(bytes.toArray()));
     }
 

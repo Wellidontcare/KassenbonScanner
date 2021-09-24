@@ -3,7 +3,6 @@ package com.nonnast.kassenbonscanner.core;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
-import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import java.util.ArrayList;
@@ -52,9 +51,17 @@ public class Preprocessing {
         block_size = block_size % 2 == 0 ? block_size + 1 : block_size;
         var binary_image = new Mat();
         Imgproc.adaptiveThreshold(image, binary_image, 255, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C, Imgproc.THRESH_BINARY, block_size, adaptive_thresh_mean_offset);
-        Imgproc.morphologyEx(binary_image, binary_image, Imgproc.MORPH_CLOSE, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(3, 3)));
+        //Imgproc.morphologyEx(binary_image, binary_image, Imgproc.MORPH_CLOSE, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(3, 3)));
         //Imgproc.morphologyEx(binary_image, binary_image, Imgproc.MORPH_ERODE, Imgproc.getStructuringElement(Imgproc.MORPH_ELLIPSE, new Size(3, 3)));
         return binary_image;
+    }
+
+    public static Mat rotate(Mat image, double angle){
+        var rotated = new Mat();
+        var image_size = image.size();
+        var rot_mat = Imgproc.getRotationMatrix2D(new Point(image_size.width / 2, image_size.height / 2), angle, 1);
+        Imgproc.warpAffine(image, rotated, rot_mat, image_size);
+        return rotated;
     }
 
 

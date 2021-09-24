@@ -1,16 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.nonnast.kassenbonscanner.Controller">
+<VBox alignment="CENTER" prefHeight="679.0" prefWidth="1018.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.nonnast.kassenbonscanner.Controller">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <center>
+            <Canvas fx:id="image_canvas" disable="true" height="600.0" width="400.0" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </BorderPane.margin></Canvas>
+         </center>
+         <right>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="194.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="321.0" prefWidth="194.0" spacing="10.0">
+                     <children>
+                        <Button fx:id="scan_button" disable="true" mnemonicParsing="false" onAction="#on_scan_clicked" text="Bon Scannen" />
+                        <Button fx:id="skew_button" disable="true" mnemonicParsing="false" onAction="#on_correct_skew" text="Verdrehung korrigieren" />
+                        <Label text="Adaptive Threshold Konstante" />
+                        <Slider fx:id="thresh_slider" blockIncrement="1.0" disable="true" max="254.0" min="1.0" onMouseDragged="#on_thresh_changed" showTickMarks="true" />
+                        <Button mnemonicParsing="false" onAction="#on_load_image" text="Bild Laden" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </right>
+         <left>
+            <VBox alignment="CENTER" prefHeight="552.0" prefWidth="227.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="table_view" editable="true" prefHeight="640.0" prefWidth="257.0">
+                    <columns>
+                      <TableColumn fx:id="product_view" editable="true" prefWidth="167.0" resizable="false" text="Produkt" />
+                       <TableColumn fx:id="price_view" editable="true" prefWidth="59.0" resizable="false" text="Preis" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </left>
+      </BorderPane>
+   </children>
 </VBox>
