@@ -11,12 +11,15 @@ OCR Qualität kann stark schwanken!
 ## Installationsanleitung:
 ### Linux und Mac
 ```bash
-git clone 
+git clone https://github.com/Wellidontcare/KassenbonScanner.git
 cd KassenbonScanner
 mnv clean javafx:run
 ```
 
 ### Windows (möglicherweise)
+```bash
+git clone https://github.com/Wellidontcare/KassenbonScanner.git
+```
 * Projekt mit intellij idea öffnen und das beste hoffen
 * Neue run configuration typ maven hinzufügen
 * command: clean javafx:run
