@@ -34,12 +34,21 @@ public class RectangleDraw implements EventHandler<MouseEvent> {
             ctx.fillOval(first.x, first.y, 10, 10);
         } else {
             second = new Point(mouseEvent.getX(), mouseEvent.getY());
+            if(first.y > second.y){
+                var temp = this.first;
+                this.first = this.second;
+                this.second = temp;
+            }
+            var width =  Math.abs(first.x - second.x);
+            var height = Math.abs(first.y - second.y);
+            if(first.x > second.x){
+                first.x -= width;
+                second.x += width;
+            }
             is_first = true;
             ctx.drawImage(image, 0, 0);
             ctx.setStroke(Color.rgb(255, 0, 0, 1));
             ctx.setLineWidth(3);
-            var width =  Math.abs(first.x - second.x);
-            var height = Math.abs(first.y - second.y);
             ctx.strokeRect(first.x, first.y,width, height);
             selection_set = true;
         }
