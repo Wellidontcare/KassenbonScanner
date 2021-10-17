@@ -20,6 +20,6 @@ mnv clean javafx:run
 ```bash
 git clone https://github.com/Wellidontcare/KassenbonScanner.git
 ```
-* Projekt mit intellij idea öffnen und das beste hoffen
+* Projekt mit intellij idea öffnen
 * Neue run configuration typ maven hinzufügen
 * command: clean javafx:run
