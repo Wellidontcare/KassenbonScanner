@@ -108,4 +108,9 @@ public class Controller {
             item_store.addAll(items);
         }
     }
+
+    @FXML
+    private void on_reset_list_clicked(){
+        item_store.clear();
+    }
 }

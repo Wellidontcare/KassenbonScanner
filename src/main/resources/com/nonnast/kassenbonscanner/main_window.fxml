@@ -38,7 +38,7 @@
             </VBox>
          </right>
          <left>
-            <VBox alignment="CENTER" prefHeight="552.0" prefWidth="227.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="552.0" prefWidth="227.0" spacing="10.0" BorderPane.alignment="CENTER">
                <children>
                   <TableView fx:id="table_view" editable="true" prefHeight="640.0" prefWidth="257.0">
                     <columns>
@@ -46,6 +46,7 @@
                        <TableColumn fx:id="price_view" editable="true" prefWidth="59.0" resizable="false" text="Preis" />
                     </columns>
                   </TableView>
+                  <Button mnemonicParsing="false" onAction="#on_reset_list_clicked" text="Produktliste zurücksetzen" />
                </children>
             </VBox>
          </left>
