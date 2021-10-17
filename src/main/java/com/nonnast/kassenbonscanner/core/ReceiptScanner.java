@@ -47,13 +47,25 @@ public class ReceiptScanner {
     }
 
     public Image preprocess_image_preview(double adaptive_thresh_mean_offset){
+        adaptive_thresh_const = adaptive_thresh_mean_offset;
+        if(adaptive_thresh_const == 0){
+            Imgproc.resize(loaded_image_original, proxy, new Size(400, 600));
+            return MatConversion.mat_to_javafx_image(proxy);
+        }
         return MatConversion.mat_to_javafx_image(Preprocessing.segment_text(proxy, adaptive_thresh_mean_offset));
     }
 
     public Image correct_skew_preview(){
-        var correction_result = Preprocessing.deskew(processed, -10, 10, 0.5);
+        var processed_image = new Mat();
+        if(adaptive_thresh_const != 0){
+            processed_image = Preprocessing.segment_text(loaded_image_original, adaptive_thresh_const);
+        } else {
+            processed_image = loaded_image_original.clone();
+        }
+        var correction_result = Preprocessing.deskew(processed_image, -10, 10, 0.5);
         Imgproc.resize(correction_result.image, proxy, new Size(400, 600));
         skew_angle = correction_result.angle;
+        System.out.printf("Skew angle: %f\n", skew_angle);
         return MatConversion.mat_to_javafx_image(proxy);
     }
 
